@@ -45,6 +45,6 @@ if __name__ == "__main__":
     password = config['grafana']['password']
 
     driver = webdriver.Chrome(executable_path=config['driver']['driver_path'])
-    dologin('https://grafana.hostdon.jp',user,password)
+    dologin(config['grafana']['base_url'],user,password)
     time.sleep(1)
     getPanelImage(config['grafana']['panel_url'])
