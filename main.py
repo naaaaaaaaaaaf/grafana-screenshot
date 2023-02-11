@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.chrome import service as fs
 
 def is_visible(driver,locator, timeout = 20):
     try:
@@ -44,7 +44,8 @@ if __name__ == "__main__":
     user = config['grafana']['user']
     password = config['grafana']['password']
 
-    driver = webdriver.Chrome(executable_path=config['driver']['driver_path'])
+    chrome_service = fs.Service(executable_path=config['driver']['driver_path']) 
+    driver = webdriver.Chrome(service=chrome_service)
     dologin(config['grafana']['base_url'],user,password)
     time.sleep(1)
     getPanelImage(config['grafana']['panel_url'])
